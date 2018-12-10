@@ -13,10 +13,13 @@ namespace E18i4DABH4Gr3.Repositories
     {
         private readonly DocumentClient _client;
         private readonly string _databaseId;
-        private readonly string _collectionID;
+        private readonly string _collectionId;
 
-        public TradeRepository()
+        public TradeRepository(DocumentClient client, string databaseId, string collectionId)
         {
+            _client = client;
+            _databaseId = databaseId;
+            _collectionId = collectionId;
         }
 
         public Task Create(Trade t)
