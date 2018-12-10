@@ -13,8 +13,5 @@ namespace ProsumerGrid.Models
         [Required]
         public string IpAddress { get; set; }
         public string Name { get; set; }
-        [Required]
-        public int ProsumerId { get; set; }
-        public Prosumer Prosumer { get; set; }
     }
 }

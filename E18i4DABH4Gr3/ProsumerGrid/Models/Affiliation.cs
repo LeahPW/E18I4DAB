@@ -6,11 +6,15 @@ using System.Web;
 
 namespace ProsumerGrid.Models
 {
-    public class Member
+    public class Affiliation
     {
         [Key]
-        public int MemberId { get; set; }
+        public int AffiliationId { get; set; }
         [Required]
-        public string Name { get; set; }
+        public int MemberId { get; set; }
+        public Member Member { get; set; }
+        [Required]
+        public int ProsumerId { get; set; }
+        public Prosumer Prosumer { get; set; }
     }
 }
