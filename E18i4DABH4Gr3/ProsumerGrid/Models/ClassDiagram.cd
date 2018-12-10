@@ -28,9 +28,9 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ProsumerGrid.Models.Member">
-    <Position X="9.5" Y="1.25" Width="1.5" />
+    <Position X="8.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Member.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,7 +45,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="ProsumerGrid.Models.Affiliation">
-    <Position X="7" Y="2.75" Width="1.5" />
+    <Position X="6.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAAAAAQACAAAIAAAAAAAAAAAACAA=</HashCode>
       <FileName>Models\Affiliation.cs</FileName>
