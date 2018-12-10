@@ -6,6 +6,8 @@ using System.Web;
 using System.Threading.Tasks;
 using E18i4DABH4Gr3.Models;
 using Microsoft.Azure.Documents.Client;
+using Microsoft.Azure.Documents;
+using System.Net;
 
 namespace E18i4DABH4Gr3.Repositories
 {
@@ -22,9 +24,24 @@ namespace E18i4DABH4Gr3.Repositories
             _collectionId = collectionId;
         }
 
-        public Task Create(Trade t)
+        public async Task Create(Trade trade)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _client.ReadDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionId, trade.TradeDocumentId));
+            }
+            catch (DocumentClientException de)
+            {
+                if (de.StatusCode == HttpStatusCode.NotFound)
+                {
+                    await _client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(_databaseId, _collectionId),
+                        trade);
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         public Task Delete(Trade t)

@@ -9,7 +9,6 @@ namespace E18i4DABH4Gr3.Models
 {
     public class Trade
     {
-        [Key]
-        public int TradeId { get; set; }
+        public string TradeDocumentId { get; set; }
     }
 }
