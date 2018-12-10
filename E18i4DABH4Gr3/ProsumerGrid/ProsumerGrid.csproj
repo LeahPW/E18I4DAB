@@ -212,12 +212,16 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Affiliation.cs" />
     <Compile Include="Models\ConsumptionItem.cs" />
+    <Compile Include="Models\Document\Trade.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\ProductionItem.cs" />
     <Compile Include="Models\Prosumer.cs" />
     <Compile Include="Models\ProsumerGridContext.cs" />
     <Compile Include="Models\SmartMeter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\TradeRepository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
