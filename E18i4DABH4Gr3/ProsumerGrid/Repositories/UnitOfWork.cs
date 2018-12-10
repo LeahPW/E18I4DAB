@@ -6,7 +6,7 @@ using System.Web;
 
 namespace E18i4DABH4Gr3.Repositories
 {
-    public class UnitOfWork<T> where T : Entity
+    public class UnitOfWork<T>
     {
         //private readonly SmartGridContext _context;
         //public IRepository<T> Repository { get; }

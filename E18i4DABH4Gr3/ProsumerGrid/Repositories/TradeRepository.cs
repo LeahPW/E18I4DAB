@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
 using E18i4DABH4Gr3.Models;
+using Microsoft.Azure.Documents.Client;
 
 namespace E18i4DABH4Gr3.Repositories
 {
