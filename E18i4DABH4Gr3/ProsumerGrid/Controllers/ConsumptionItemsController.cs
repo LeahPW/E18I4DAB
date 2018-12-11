@@ -18,22 +18,49 @@ namespace ProsumerGrid.Controllers
         private ProsumerGridContext db = new ProsumerGridContext();
 
         // GET: api/ConsumptionItems
-        public IQueryable<ConsumptionItem> GetConsumptionItems()
+        public IQueryable<ConsumptionItemDTO> GetConsumptionItems()
         {
-            return db.ConsumptionItems;
+            var conitems = from b in db.ConsumptionItems
+                select new ConsumptionItemDTO()
+                {
+                    ConItemId = b.ConItemId,
+                    Name = b.Name,
+                    ProsumerAddress = b.Prosumer.Address,
+                    ProsumerType = b.Prosumer.Type
+                };
+            return conitems;
+
+            //old code
+            //return db.ConsumptionItems;
         }
 
         // GET: api/ConsumptionItems/5
         [ResponseType(typeof(ConsumptionItem))]
         public async Task<IHttpActionResult> GetConsumptionItem(int id)
         {
-            ConsumptionItem consumptionItem = await db.ConsumptionItems.FindAsync(id);
-            if (consumptionItem == null)
+            var conitem = await db.ConsumptionItems.Include(b => b.Prosumer).Select(b =>
+                new ConsumptionItemDTO()
+                {
+                    ConItemId = b.ConItemId,
+                    Name = b.Name,
+                    ProsumerAddress = b.Prosumer.Address,
+                    ProsumerType = b.Prosumer.Type
+                }).SingleOrDefaultAsync(b => b.ConItemId == id);
+
+            if (conitem == null)
             {
                 return NotFound();
             }
 
-            return Ok(consumptionItem);
+            return Ok(conitem);
+            //old code
+            //ConsumptionItem consumptionItem = await db.ConsumptionItems.FindAsync(id);
+            //if (consumptionItem == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return Ok(consumptionItem);
         }
 
         // PUT: api/ConsumptionItems/5

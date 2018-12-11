@@ -10,17 +10,17 @@ namespace ProsumerGrid.Migrations
             CreateTable(
                 "dbo.Affiliations",
                 c => new
-                    {
-                        AffiliationId = c.Int(nullable: false, identity: true),
-                        MemberId = c.Int(nullable: false),
-                        ProsumerId = c.Int(nullable: false),
-                    })
+                {
+                    AffiliationId = c.Int(nullable: false, identity: true),
+                    MemberId = c.Int(nullable: false),
+                    ProsumerId = c.Int(nullable: false),
+                })
                 .PrimaryKey(t => t.AffiliationId)
                 .ForeignKey("dbo.Members", t => t.MemberId, cascadeDelete: true)
                 .ForeignKey("dbo.Prosumers", t => t.ProsumerId, cascadeDelete: true)
                 .Index(t => t.MemberId)
                 .Index(t => t.ProsumerId);
-            
+
             CreateTable(
                 "dbo.Members",
                 c => new
@@ -85,20 +85,20 @@ namespace ProsumerGrid.Migrations
         {
             DropForeignKey("dbo.ProductionItems", "ProsumerId", "dbo.Prosumers");
             DropForeignKey("dbo.ConsumptionItems", "ProsumerId", "dbo.Prosumers");
-            DropForeignKey("dbo.Affiliations", "ProsumerId", "dbo.Prosumers");
+            //DropForeignKey("dbo.Affiliations", "ProsumerId", "dbo.Prosumers");
             DropForeignKey("dbo.Prosumers", "SmartMeterId", "dbo.SmartMeters");
-            DropForeignKey("dbo.Affiliations", "MemberId", "dbo.Members");
+            //DropForeignKey("dbo.Affiliations", "MemberId", "dbo.Members");
             DropIndex("dbo.ProductionItems", new[] { "ProsumerId" });
             DropIndex("dbo.ConsumptionItems", new[] { "ProsumerId" });
             DropIndex("dbo.Prosumers", new[] { "SmartMeterId" });
-            DropIndex("dbo.Affiliations", new[] { "ProsumerId" });
-            DropIndex("dbo.Affiliations", new[] { "MemberId" });
+            //DropIndex("dbo.Affiliations", new[] { "ProsumerId" });
+            //DropIndex("dbo.Affiliations", new[] { "MemberId" });
             DropTable("dbo.ProductionItems");
             DropTable("dbo.ConsumptionItems");
             DropTable("dbo.SmartMeters");
             DropTable("dbo.Prosumers");
             DropTable("dbo.Members");
-            DropTable("dbo.Affiliations");
+            //DropTable("dbo.Affiliations");
         }
     }
 }

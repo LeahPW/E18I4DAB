@@ -18,22 +18,52 @@ namespace ProsumerGrid.Controllers
         private ProsumerGridContext db = new ProsumerGridContext();
 
         // GET: api/Prosumers
-        public IQueryable<Prosumer> GetProsumers()
+        public IQueryable<ProsumerDTO> GetProsumers()
         {
-            return db.Prosumers;
+            var prosumers = from b in db.Prosumers
+                select new ProsumerDTO()
+                {
+                    ProsumerId = b.ProsumerId,
+                    Address = b.Address,
+                    SmartMeterIp = b.SmartMeter.IpAddress,
+                    SmartMeterName = b.SmartMeter.Name
+                };
+            return prosumers;
+
+            // old code
+            //return db.Prosumers;
         }
 
+      
         // GET: api/Prosumers/5
         [ResponseType(typeof(Prosumer))]
         public async Task<IHttpActionResult> GetProsumer(int id)
         {
-            Prosumer prosumer = await db.Prosumers.FindAsync(id);
+            var prosumer = await db.Prosumers.Include(b => b.SmartMeter).Select(b =>
+                new ProsumerDTO()
+                {
+                    ProsumerId = b.ProsumerId,
+                    Address = b.Address,
+                    SmartMeterIp = b.SmartMeter.IpAddress,
+                    SmartMeterName = b.SmartMeter.Name
+                }).SingleOrDefaultAsync(b => b.ProsumerId == id);
+
             if (prosumer == null)
             {
                 return NotFound();
             }
 
             return Ok(prosumer);
+
+            //old code
+
+            //Prosumer prosumer = await db.Prosumers.FindAsync(id);
+            //if (prosumer == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return Ok(prosumer);
         }
 
         // PUT: api/Prosumers/5
