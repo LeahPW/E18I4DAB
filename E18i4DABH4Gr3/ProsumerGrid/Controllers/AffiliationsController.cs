@@ -18,22 +18,50 @@ namespace ProsumerGrid.Controllers
         private ProsumerGridContext db = new ProsumerGridContext();
 
         // GET: api/Affiliations
-        public IQueryable<Affiliation> GetAffiliations()
+        public IQueryable<AffiliationDTO> GetAffiliations()
         {
-            return db.Affiliations;
+            var affiliations = from b in db.Affiliations
+                select new AffiliationDTO()
+                {
+                    AffiliationId = b.AffiliationId,
+                    MemberName = b.Member.Name,
+                    ProsumerAddress = b.Prosumer.Address,
+                    SmartMeterIp = b.Prosumer.SmartMeter.IpAddress
+                };
+            return affiliations;
+            //old code
+            //return db.Affiliations;
         }
 
         // GET: api/Affiliations/5
         [ResponseType(typeof(Affiliation))]
         public async Task<IHttpActionResult> GetAffiliation(int id)
         {
-            Affiliation affiliation = await db.Affiliations.FindAsync(id);
+            var affiliation= await db.Affiliations.Include(b => b.Member).Include(b=>b.Prosumer).Select(b =>
+                new AffiliationDTO()
+                {
+                    AffiliationId = b.AffiliationId,
+                    MemberName = b.Member.Name,
+                    ProsumerAddress = b.Prosumer.Address,
+                    SmartMeterIp = b.Prosumer.SmartMeter.IpAddress
+                }).SingleOrDefaultAsync(b => b.AffiliationId == id);
+
             if (affiliation == null)
             {
                 return NotFound();
             }
 
             return Ok(affiliation);
+
+            //old code
+
+            //Affiliation affiliation = await db.Affiliations.FindAsync(id);
+            //if (affiliation == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return Ok(affiliation);
         }
 
         // PUT: api/Affiliations/5

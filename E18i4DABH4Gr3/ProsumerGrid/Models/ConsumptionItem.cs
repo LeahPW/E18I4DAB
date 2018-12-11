@@ -14,8 +14,10 @@ namespace ProsumerGrid.Models
         public string Name { get; set; }
         [Required]
         public double Consumption { get; set; }
+        //Foreign key
         [Required]
         public int ProsumerId { get; set; }
+        //Navigation property
         public Prosumer Prosumer { get; set; }
     }
 }

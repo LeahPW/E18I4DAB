@@ -14,8 +14,10 @@ namespace ProsumerGrid.Models
         public string Type { get; set; }
         [Required]
         public string Address { get; set; }
+        //Foreign key
         [Required]
         public int SmartMeterId { get; set; }
+        //Navigation property
         public SmartMeter SmartMeter { get; set; }
 
         //public ICollection<Member> Members { get; set; }
