@@ -18,22 +18,50 @@ namespace ProsumerGrid.Controllers
         private ProsumerGridContext db = new ProsumerGridContext();
 
         // GET: api/ProductionItems
-        public IQueryable<ProductionItem> GetProductionItems()
+        public IQueryable<ProductionItemDTO> GetProductionItems()
         {
-            return db.ProductionItems;
+            var proitems = from b in db.ProductionItems
+                select new ProductionItemDTO()
+                {
+                    ProItemId = b.ProItemId,
+                    Name = b.Name,
+                    ProsumerAddress = b.Prosumer.Address,
+                    ProsumerType = b.Prosumer.Type
+                };
+            return proitems;
+
+            //old code
+            //return db.ProductionItems;
         }
 
         // GET: api/ProductionItems/5
         [ResponseType(typeof(ProductionItem))]
         public async Task<IHttpActionResult> GetProductionItem(int id)
         {
-            ProductionItem productionItem = await db.ProductionItems.FindAsync(id);
-            if (productionItem == null)
+            var proitem = await db.ProductionItems.Include(b => b.Prosumer).Select(b =>
+                new ProductionItemDTO()
+                {
+                    ProItemId = b.ProItemId,
+                    Name = b.Name,
+                    ProsumerAddress = b.Prosumer.Address,
+                    ProsumerType = b.Prosumer.Type
+                }).SingleOrDefaultAsync(b => b.ProItemId == id);
+
+            if (proitem == null)
             {
                 return NotFound();
             }
 
-            return Ok(productionItem);
+            return Ok(proitem);
+
+            //old code
+            //ProductionItem productionItem = await db.ProductionItems.FindAsync(id);
+            //if (productionItem == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return Ok(productionItem);
         }
 
         // PUT: api/ProductionItems/5

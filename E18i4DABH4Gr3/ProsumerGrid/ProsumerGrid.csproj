@@ -62,6 +62,7 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -99,7 +100,6 @@
     </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml.Linq" />
@@ -247,13 +247,25 @@
     <Compile Include="Migrations\201812101621051_Initial.Designer.cs">
       <DependentUpon>201812101621051_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812111349133_BackToInitial.cs" />
+    <Compile Include="Migrations\201812111349133_BackToInitial.Designer.cs">
+      <DependentUpon>201812111349133_BackToInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111351039_BackToInitial1.cs" />
+    <Compile Include="Migrations\201812111351039_BackToInitial1.Designer.cs">
+      <DependentUpon>201812111351039_BackToInitial1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Affiliation.cs" />
+    <Compile Include="Models\AffiliationDTO.cs" />
     <Compile Include="Models\ConsumptionItem.cs" />
+    <Compile Include="Models\ConsumptionItemDTO.cs" />
     <Compile Include="Models\Document\Trade.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\ProductionItem.cs" />
+    <Compile Include="Models\ProductionItemDTO.cs" />
     <Compile Include="Models\Prosumer.cs" />
+    <Compile Include="Models\ProsumerDTO.cs" />
     <Compile Include="Models\ProsumerGridContext.cs" />
     <Compile Include="Models\SmartMeter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -351,6 +363,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812101621051_Initial.resx">
       <DependentUpon>201812101621051_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111349133_BackToInitial.resx">
+      <DependentUpon>201812111349133_BackToInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111351039_BackToInitial1.resx">
+      <DependentUpon>201812111351039_BackToInitial1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
