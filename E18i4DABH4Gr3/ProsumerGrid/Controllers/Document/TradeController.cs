@@ -29,6 +29,11 @@ namespace ProsumerGrid.Controllers.Document
             _repository = new TradeRepository(_client, _databaseId, _collectionId);
         }
 
+        public async Task<Trade> Get(string id)
+        {
+            return await _repository.Read(id);
+        }
+
         public async Task Post([FromBody]Trade trade)
         {
             await _repository.Create(trade);

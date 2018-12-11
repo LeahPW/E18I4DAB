@@ -49,9 +49,9 @@ namespace E18i4DABH4Gr3.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Trade> Read(int id)
+        public async Task<Trade> Read(string id)
         {
-            throw new NotImplementedException();
+            return await _client.ReadDocumentAsync<Trade>(UriFactory.CreateDocumentUri(_databaseId, _collectionId, id));
         }
 
         public Task<IEnumerable<Trade>> ReadAll()
@@ -59,12 +59,7 @@ namespace E18i4DABH4Gr3.Repositories
             throw new NotImplementedException();
         }
 
-        public override string ToString()
-        {
-            return base.ToString();
-        }
-
-        public Task Update(int id, Trade t)
+        public Task Update(string id, Trade t)
         {
             throw new NotImplementedException();
         }

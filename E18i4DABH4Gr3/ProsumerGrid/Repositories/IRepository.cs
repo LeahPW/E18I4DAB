@@ -10,8 +10,8 @@ namespace E18iDABH4Gr3.Repositories
     public interface IRepository<T>
     {
         Task Create(T t);
-        Task<T> Read(int id);
-        Task Update(int id, T t);
+        Task<T> Read(string id);
+        Task Update(string id, T t);
         Task<IEnumerable<T>> ReadAll();
         Task Delete(T t);
     }
