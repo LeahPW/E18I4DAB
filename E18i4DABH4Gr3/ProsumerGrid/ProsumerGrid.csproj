@@ -247,6 +247,14 @@
     <Compile Include="Migrations\201812101621051_Initial.Designer.cs">
       <DependentUpon>201812101621051_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812111349133_BackToInitial.cs" />
+    <Compile Include="Migrations\201812111349133_BackToInitial.Designer.cs">
+      <DependentUpon>201812111349133_BackToInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111351039_BackToInitial1.cs" />
+    <Compile Include="Migrations\201812111351039_BackToInitial1.Designer.cs">
+      <DependentUpon>201812111351039_BackToInitial1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Affiliation.cs" />
     <Compile Include="Models\AffiliationDTO.cs" />
@@ -355,6 +363,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812101621051_Initial.resx">
       <DependentUpon>201812101621051_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111349133_BackToInitial.resx">
+      <DependentUpon>201812111349133_BackToInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111351039_BackToInitial1.resx">
+      <DependentUpon>201812111351039_BackToInitial1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
