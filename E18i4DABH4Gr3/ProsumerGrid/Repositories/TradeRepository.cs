@@ -28,7 +28,7 @@ namespace E18i4DABH4Gr3.Repositories
         {
             try
             {
-                await _client.ReadDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionId, trade.TradeDocumentId));
+                await _client.ReadDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionId, trade.Id));
             }
             catch (DocumentClientException de)
             {

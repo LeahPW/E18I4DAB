@@ -9,6 +9,14 @@ namespace E18i4DABH4Gr3.Models
 {
     public class Trade
     {
-        public string TradeDocumentId { get; set; }
+        public string Id { get; set; }
+        public bool Produce { get; set; }
+        public double Prosumed { get; set; }
+        //Omregnes fra kWh til kroner
+        public double MonetaryValue { get; set; }
+        public int Status { get; set; }
+        public DateTime TradeTime { get; set; }
+        public int ProsumerId { get; set; }
+
     }
 }
