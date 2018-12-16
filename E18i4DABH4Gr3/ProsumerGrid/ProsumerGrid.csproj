@@ -234,12 +234,15 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AffiliationsController.cs" />
     <Compile Include="Controllers\ConsumptionItemsController.cs" />
+    <Compile Include="Controllers\TraderInfo\HomeController.cs" />
+    <Compile Include="Controllers\TraderInfo\ProducesAttribute.cs" />
+    <Compile Include="Controllers\TraderInfo\ValuesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\ProductionItemsController.cs" />
     <Compile Include="Controllers\ProsumersController.cs" />
     <Compile Include="Controllers\SmartMetersController.cs" />
-    <Compile Include="Controllers\Document\TradeController.cs" />
+    <Compile Include="Controllers\TraderInfo\TradeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -260,7 +263,9 @@
     <Compile Include="Models\AffiliationDTO.cs" />
     <Compile Include="Models\ConsumptionItem.cs" />
     <Compile Include="Models\ConsumptionItemDTO.cs" />
-    <Compile Include="Models\Document\Trade.cs" />
+    <Compile Include="Models\TraderInfo\ErrorViewModel.cs" />
+    <Compile Include="Models\TraderInfo\Trade.cs" />
+    <Compile Include="Models\TraderInfo\Transaktion.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\ProductionItem.cs" />
     <Compile Include="Models\ProductionItemDTO.cs" />
@@ -306,7 +311,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Models\ClassDiagram.cd" />
+    <Content Include="Models\ClassDiagram.cd">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

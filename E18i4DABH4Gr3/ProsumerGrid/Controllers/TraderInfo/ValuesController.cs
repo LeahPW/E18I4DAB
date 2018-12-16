@@ -1,22 +1,15 @@
 ﻿namespace TraderInfo.Controllers
 {
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Documents;
-using Models;
-using static System.Net.Mime.MediaTypeNames;
+    using System.Collections.Generic;
+    using System.Web.Http;
 
-[Produces("application/json")]
+    [Produces(V)]
 [Route("api/Transaktion")]
 
     public class ValuesController : ApiController
     {
+        private const string V = "application/json";
+
         // GET api/values
         public IEnumerable<string> Get()
         {

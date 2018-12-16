@@ -13,8 +13,10 @@ namespace ProsumerGrid.Controllers.Document
 {
     public class TradeController : ApiController
     {
-        private const string _endpointUrl = "https://localhost:8081";
-        private const string _key = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+        //private const string _endpointUrl = "https://localhost:8081";
+        //private const string _key = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+        private const string _endpointUrl = "https://e18i4dab.documents.azure.com:443/";
+        private const string _key = "kM87VaX0sSG87AFM2x6LgtUoZ80N6YRumqvnc5TUhyOrH6yoiPHGFpjAEhYeQL1PhRCkN2nKzpNEBifo3mVthw==";
         private const string _databaseId = "TradeDB";
         private const string _collectionId = "TradeCollection";
 
