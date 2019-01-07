@@ -258,6 +258,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Affiliation.cs" />
     <Compile Include="Models\AffiliationDTO.cs" />
+    <Compile Include="Models\SmartMeterDTO.cs" />
     <Compile Include="Models\ConsumptionItem.cs" />
     <Compile Include="Models\ConsumptionItemDTO.cs" />
     <Compile Include="Models\Document\Trade.cs" />

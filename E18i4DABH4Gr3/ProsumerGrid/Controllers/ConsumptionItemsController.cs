@@ -25,6 +25,7 @@ namespace ProsumerGrid.Controllers
                 {
                     ConItemId = b.ConItemId,
                     Name = b.Name,
+                    Consumption = b.Consumption,
                     ProsumerAddress = b.Prosumer.Address,
                     ProsumerType = b.Prosumer.Type
                 };
@@ -43,6 +44,7 @@ namespace ProsumerGrid.Controllers
                 {
                     ConItemId = b.ConItemId,
                     Name = b.Name,
+                    Consumption = b.Consumption,
                     ProsumerAddress = b.Prosumer.Address,
                     ProsumerType = b.Prosumer.Type
                 }).SingleOrDefaultAsync(b => b.ConItemId == id);

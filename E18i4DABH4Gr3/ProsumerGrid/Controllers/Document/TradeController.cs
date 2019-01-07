@@ -1,5 +1,6 @@
 ﻿using E18i4DABH4Gr3.Models;
 using E18i4DABH4Gr3.Repositories;
+using E18iDABH4Gr3.Repositories;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using System;
@@ -35,12 +36,18 @@ namespace ProsumerGrid.Controllers.Document
             return await _repository.Read(id);
         }
 
-        public async Task Post([FromBody]Trade trade)
+        public IEnumerable<Trade> Get()
+        {
+            return _repository.Query().ToList();
+        }
+
+        // POST: api/Trade
+        public async Task Post(Trade trade)
         {
             await _repository.Create(trade);
         }
 
-        public async Task Post([FromBody]List<Trade> trades)
+        public async Task Post(List<Trade> trades)
         {
             foreach (Trade t in trades)
             {
@@ -51,6 +58,11 @@ namespace ProsumerGrid.Controllers.Document
         public async Task Put(string id, [FromBody] Trade trade)
         {
             await _repository.Update(id, trade);
+        }
+
+        public async Task Delete(string id)
+        {
+            await _repository.Delete(id);
         }
     }
 }

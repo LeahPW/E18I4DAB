@@ -13,5 +13,9 @@ namespace ProsumerGrid.Models
         [Required]
         public string IpAddress { get; set; }
         public string Name { get; set; }
+        [Required]
+        public double Consumption { get; set; }
+        [Required]
+        public double Production { get; set; }
     }
 }

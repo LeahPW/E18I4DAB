@@ -9,6 +9,7 @@ namespace ProsumerGrid.Models
     {
         public int ProItemId { get; set; }
         public string Name { get; set; }
+        public double Production { get; set; }
         public string ProsumerType { get; set; }
         
         public string ProsumerAddress { get; set; }

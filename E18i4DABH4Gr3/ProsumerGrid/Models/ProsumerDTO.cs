@@ -10,6 +10,7 @@ namespace ProsumerGrid.Models
         public int ProsumerId { get; set; }
         public string Type { get; set; }
         public string Address { get; set; }
+        public double Prosumption { get; set; }
         public string SmartMeterIp { get; set; }
         public string SmartMeterName { get; set; }
     }

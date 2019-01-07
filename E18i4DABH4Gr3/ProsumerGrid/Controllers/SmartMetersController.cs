@@ -20,7 +20,7 @@ namespace ProsumerGrid.Controllers
         // GET: api/SmartMeters
         public IQueryable<SmartMeter> GetSmartMeters()
         {
-            return db.SmartMeters;
+           return db.SmartMeters;
         }
 
         // GET: api/SmartMeters/5

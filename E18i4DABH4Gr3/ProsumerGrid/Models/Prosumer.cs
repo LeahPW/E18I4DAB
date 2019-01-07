@@ -20,8 +20,7 @@ namespace ProsumerGrid.Models
         //Navigation property
         public SmartMeter SmartMeter { get; set; }
 
-        //public virtual ICollection<Member> Members { get; set; }
-        //public ICollection<ConsumptionItem> ConItems { get; set; }
-        //public ICollection<ProductionItem> ProItems { get; set; }
+        public ICollection<ConsumptionItem> ConItems { get; set; }
+        public ICollection<ProductionItem> ProItems { get; set; }
     }
 }
