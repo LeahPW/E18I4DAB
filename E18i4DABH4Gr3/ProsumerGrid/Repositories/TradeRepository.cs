@@ -8,6 +8,7 @@ using E18i4DABH4Gr3.Models;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents;
 using System.Net;
+using System.Diagnostics;
 
 namespace E18i4DABH4Gr3.Repositories
 {
@@ -30,9 +31,9 @@ namespace E18i4DABH4Gr3.Repositories
             {
                 await _client.ReadDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionId, trade.Id));
             }
-            catch (DocumentClientException de)
+            catch (DocumentClientException e)
             {
-                if (de.StatusCode == HttpStatusCode.NotFound)
+                if (e.StatusCode == HttpStatusCode.NotFound)
                 {
                     await _client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(_databaseId, _collectionId),
                         trade);
@@ -44,24 +45,66 @@ namespace E18i4DABH4Gr3.Repositories
             }
         }
 
-        public Task Delete(Trade t)
+        public async Task<bool> Delete(Trade trade)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionId, trade.Id));
+                return true;
+            }
+            catch (DocumentClientException e)
+            {
+                if (e.StatusCode == HttpStatusCode.NotFound)
+                {
+                    Debug.WriteLine(e);
+                    Debug.WriteLine("Not found.");
+                }
+                else
+                {
+                    Debug.WriteLine(e);
+                }
+                return false;
+            }
         }
 
         public async Task<Trade> Read(string id)
         {
-            return await _client.ReadDocumentAsync<Trade>(UriFactory.CreateDocumentUri(_databaseId, _collectionId, id));
+            try
+            {
+                var documentResponse = await _client.ReadDocumentAsync<Trade>(UriFactory.CreateDocumentUri(_databaseId, _collectionId, id));
+                return documentResponse.Document;
+            }
+            catch (DocumentClientException e)
+            {
+                Debug.WriteLine(e);
+                if (e.StatusCode == HttpStatusCode.NotFound)
+                {
+                    Debug.WriteLine("Not found.");
+                }
+                return null;
+            }
         }
 
-        public Task<IEnumerable<Trade>> ReadAll()
+        public async Task<bool> Update(Trade trade)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task Update(string id, Trade t)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                await _client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionId, trade.Id), trade);
+                return true;
+            }
+            catch (DocumentClientException e)
+            {
+                if (e.StatusCode == HttpStatusCode.NotFound)
+                {
+                    Debug.WriteLine(e);
+                    Debug.WriteLine("Not found.");
+                }
+                else
+                {
+                    Debug.WriteLine(e);
+                }
+                return false;
+            }
         }
     }
 }

@@ -40,18 +40,17 @@ namespace ProsumerGrid.Controllers.Document
             await _repository.Create(trade);
         }
 
-        public async Task<IEnumerable<Trade>> Get()
-        {
-            return await _repository.ReadAll();
-        }
-
-        //// POST: api/Trade
         public async Task Post([FromBody]List<Trade> trades)
         {
             foreach (Trade t in trades)
             {
                 await _repository.Create(t);
             }
+        }
+
+        public async Task Put([FromBody] Trade trade)
+        {
+
         }
     }
 }
