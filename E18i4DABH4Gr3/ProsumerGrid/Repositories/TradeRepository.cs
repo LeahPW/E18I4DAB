@@ -85,7 +85,7 @@ namespace E18i4DABH4Gr3.Repositories
             }
         }
 
-        public async Task<bool> Update(Trade trade)
+        public async Task<bool> Update(string id, Trade trade)
         {
             try
             {

@@ -11,7 +11,7 @@ namespace E18iDABH4Gr3.Repositories
     {
         Task Create(T t);
         Task<T> Read(string id);
-        Task<bool> Update(T t);
+        Task<bool> Update(string id, T t);
         Task<bool> Delete(T t);
     }
 }

@@ -48,9 +48,9 @@ namespace ProsumerGrid.Controllers.Document
             }
         }
 
-        public async Task Put([FromBody] Trade trade)
+        public async Task Put(string id, [FromBody] Trade trade)
         {
-            await _repository.Update(trade);
+            await _repository.Update(id, trade);
         }
     }
 }
