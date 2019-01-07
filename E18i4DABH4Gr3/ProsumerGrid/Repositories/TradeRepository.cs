@@ -25,11 +25,13 @@ namespace E18i4DABH4Gr3.Repositories
             _collectionId = collectionId;
         }
 
-        public async Task Create(Trade trade)
+        public async Task<bool> Create(Trade trade)
         {
             try
             {
                 await _client.ReadDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionId, trade.Id));
+                return true;
+
             }
             catch (DocumentClientException e)
             {
@@ -37,19 +39,21 @@ namespace E18i4DABH4Gr3.Repositories
                 {
                     await _client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(_databaseId, _collectionId),
                         trade);
+                    return true;
                 }
                 else
                 {
-                    throw;
+                    Debug.WriteLine(e);
+                    return false;
                 }
             }
         }
 
-        public async Task<bool> Delete(Trade trade)
+        public async Task<bool> Delete(string id)
         {
             try
             {
-                await _client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionId, trade.Id));
+                await _client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionId, id));
                 return true;
             }
             catch (DocumentClientException e)
@@ -67,6 +71,12 @@ namespace E18i4DABH4Gr3.Repositories
             }
         }
 
+        public IOrderedQueryable<Trade> Query()
+        {
+            FeedOptions queryOptions = new FeedOptions() { MaxItemCount = -1 };
+            return _client.CreateDocumentQuery<Trade>(UriFactory.CreateDocumentCollectionUri(_databaseId, _collectionId), queryOptions);
+        }
+            
         public async Task<Trade> Read(string id)
         {
             try
