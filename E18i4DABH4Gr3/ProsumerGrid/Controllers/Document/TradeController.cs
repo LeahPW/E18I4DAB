@@ -50,7 +50,7 @@ namespace ProsumerGrid.Controllers.Document
 
         public async Task Put([FromBody] Trade trade)
         {
-
+            await _repository.Update(trade);
         }
     }
 }
