@@ -49,13 +49,26 @@ namespace ProsumerGrid.Controllers.TradeApi
             return _repository.Query().ToList();
         }
 
+        [Route("api/Trade/planned")]
+        [HttpGet]
+        public IEnumerable<Trade> GetPlaned()
+        {
+            return _repository.Query().Where(t => (TradeStatus)t.Status == TradeStatus.Planned).ToList(); //casting due no time to refactoring
+        }
+
+        [Route("api/Trade/current")]
+        [HttpGet]
+        public IEnumerable<Trade> GetCurrent()
+        {
+            return _repository.Query().Where(t => (TradeStatus)t.Status == TradeStatus.Current).ToList(); //casting due no time to refactoring
+        }
+
         [Route("api/Trade/archived")]
         [HttpGet]
-        public IEnumerable<Trade> GetAllArchived()
+        public IEnumerable<Trade> GetArchived()
         {
             return _repository.Query().Where(t => (TradeStatus)t.Status == TradeStatus.Archived).ToList(); //casting due no time to refactoring
         }
-
         public async Task<bool> Post(Trade trade) //would be nicer to return http status or a string about the success to connect to the database
         {
             return await _repository.Create(trade);
@@ -74,6 +87,8 @@ namespace ProsumerGrid.Controllers.TradeApi
 
     public enum TradeStatus // should replace the int
     {
+        Planned = 0,
+        Current = 1,
         Archived = 2
     }
 }
