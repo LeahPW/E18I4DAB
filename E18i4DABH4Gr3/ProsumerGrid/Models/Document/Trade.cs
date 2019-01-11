@@ -1,4 +1,5 @@
 ﻿using E18iDABH4Gr3;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,6 +10,7 @@ namespace E18i4DABH4Gr3.Models
 {
     public class Trade
     {
+        [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
         public bool Produce { get; set; }
         public double Prosumed { get; set; }

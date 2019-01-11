@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Mvc;
 
 namespace ProsumerGrid.Controllers.Document
 {
@@ -41,18 +42,9 @@ namespace ProsumerGrid.Controllers.Document
             return _repository.Query().ToList();
         }
 
-        // POST: api/Trade
-        public async Task Post(Trade trade)
+        public async Task<bool> Post(Trade trade) //would be nicer to return http status or a string about the success to connect to the database
         {
-            await _repository.Create(trade);
-        }
-
-        public async Task Post(List<Trade> trades)
-        {
-            foreach (Trade t in trades)
-            {
-                await _repository.Create(t);
-            }
+            return await _repository.Create(trade);
         }
 
         public async Task Put(string id, [FromBody] Trade trade)
