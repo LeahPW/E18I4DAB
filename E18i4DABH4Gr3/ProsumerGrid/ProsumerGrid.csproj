@@ -252,10 +252,8 @@
     <Compile Include="Controllers\ProsumerApi\ProsumersController.cs" />
     <Compile Include="Controllers\SmartGridApi\SmartMetersController.cs" />
     <Compile Include="Controllers\TradeApi\TradeController.cs" />
-    <Compile Include="Controllers\ProsumerController.cs" />
     <Compile Include="Controllers\SmartGridApi\GridController.cs" />
     <Compile Include="Controllers\SmartGridApi\NodesController.cs" />
-    <Compile Include="Controllers\SmartGridController.cs" />
     <Compile Include="Controllers\TradesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -306,6 +304,7 @@
     <Compile Include="Services\ApiClient.cs" />
     <Compile Include="Services\Prosumer\ProsumerService.cs" />
     <Compile Include="Services\SmartGrid\SmartGridService.cs" />
+    <Compile Include="Services\Trade\TradeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -362,16 +361,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\ApiTest.cshtml" />
-    <Content Include="Views\Prosumer\Create.cshtml" />
-    <Content Include="Views\Prosumer\Delete.cshtml" />
-    <Content Include="Views\Prosumer\Details.cshtml" />
-    <Content Include="Views\Prosumer\Edit.cshtml" />
-    <Content Include="Views\Prosumer\Index.cshtml" />
-    <Content Include="Views\SmartGrid\Create.cshtml" />
-    <Content Include="Views\SmartGrid\Delete.cshtml" />
-    <Content Include="Views\SmartGrid\Details.cshtml" />
-    <Content Include="Views\SmartGrid\Edit.cshtml" />
-    <Content Include="Views\SmartGrid\Index.cshtml" />
     <Content Include="Views\Trades\Create.cshtml" />
     <Content Include="Views\Trades\Delete.cshtml" />
     <Content Include="Views\Trades\Details.cshtml" />
@@ -380,7 +369,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Services\Trade\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
