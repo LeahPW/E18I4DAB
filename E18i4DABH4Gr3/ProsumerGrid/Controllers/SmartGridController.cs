@@ -23,6 +23,12 @@ namespace ProsumerGrid.Controllers
             _gridService = new SmartGridService();
         }
 
+        public ActionResult UpdateTerm()
+        {
+            _gridService.UpdateTerm();
+            return Index();
+        }
+
         // GET: Trades
         public ActionResult Index()
         {

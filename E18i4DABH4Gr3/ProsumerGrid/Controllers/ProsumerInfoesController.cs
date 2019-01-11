@@ -45,19 +45,19 @@ namespace ProsumerGrid.Controllers
         // POST: ProsumerInfoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Type,Address")] ProsumerInfo prosumerInfo)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Prosumers.Add(prosumerInfo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "Id,Type,Address")] ProsumerInfo prosumerInfo)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Prosumers.Add(prosumerInfo);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(prosumerInfo);
-        }
+        //    return View(prosumerInfo);
+        //}
 
         // GET: ProsumerInfoes/Edit/5
         public ActionResult Edit(int? id)
@@ -91,38 +91,38 @@ namespace ProsumerGrid.Controllers
         }
 
         // GET: ProsumerInfoes/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ProsumerInfo prosumerInfo = db.Prosumers.Find(id);
-            if (prosumerInfo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(prosumerInfo);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    ProsumerInfo prosumerInfo = db.Prosumers.Find(id);
+        //    if (prosumerInfo == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(prosumerInfo);
+        //}
 
-        // POST: ProsumerInfoes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ProsumerInfo prosumerInfo = db.Prosumers.Find(id);
-            db.Prosumers.Remove(prosumerInfo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: ProsumerInfoes/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    ProsumerInfo prosumerInfo = db.Prosumers.Find(id);
+        //    db.Prosumers.Remove(prosumerInfo);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

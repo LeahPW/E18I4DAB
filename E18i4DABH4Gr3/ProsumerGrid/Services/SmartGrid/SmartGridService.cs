@@ -65,7 +65,7 @@ namespace ProsumerGrid.Services.SmartGrid
             List<Node> nodes;
             try
             {
-                HttpResponseMessage response = _nodeApi.GetResponse("Node");
+                HttpResponseMessage response = _nodeApi.GetResponse("Nodes");
                 response.EnsureSuccessStatusCode();
                 nodes = response.Content.ReadAsAsync<List<Node>>().Result;
             }

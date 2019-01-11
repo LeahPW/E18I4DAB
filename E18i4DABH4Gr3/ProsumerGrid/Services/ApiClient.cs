@@ -25,9 +25,11 @@ namespace ProsumerGrid.Services
             return responseTask.Result;
             //return Client.GetAsync(url).Result;
         }
-        public HttpResponseMessage Put(string url, object model)
+        public HttpResponseMessage Put(string url, Entity model)
         {
-            return Client.PutAsJsonAsync(url, model).Result;
+            var putTask = Client.PostAsJsonAsync<Entity>(url, model);
+            putTask.Wait();
+            return putTask.Result;
         }
         public HttpResponseMessage Post(string url, Entity model)
         {
