@@ -27,8 +27,17 @@ namespace ProsumerGrid.Controllers
         public ActionResult Index()
         {
             List<NodeDTO> nodes = _gridService.GetNodeList();
-
-            return View("Overview", nodes);
+            Grid g = _gridService.GetGrid();
+            var model = new SmartGridViewModel
+            {
+                Nodes = nodes,
+                Grid = new GridDTO
+                {
+                    Id = g.Id, Balance = g.Balance, Production = g.Production, Consumption = g.Consumption,
+                    Term = g.Term, BlockExchangeValue = g.BlockExchangeValue, Name = g.Name
+                }
+            };
+            return View("Overview", model);
         }
 
         //// GET: SmartGrid/Details/5

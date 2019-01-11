@@ -19,21 +19,9 @@ namespace ProsumerGrid.Controllers.SmartGridApi
         private ProsumerGridContext db = new ProsumerGridContext();
 
         // GET: api/Nodes
-        public IQueryable<NodeDTO> GetNodes()
+        public IQueryable<Node> GetNodes()
         {
-            var nodes = from n in db.Nodes
-                select new NodeDTO()
-                {
-                    Id = n.Id,
-                    ProsumerInfoId = n.ProsumerInfoId,
-                    Balance = n.Balance,
-                    GridName = n.Grid.Name,
-                    GridBalance = n.Grid.Balance,
-                    GridBlockExchangeValue = n.Grid.BlockExchangeValue,
-                    Consumption = n.Consumption,
-                    Production = n.Production
-                };
-            return nodes;
+            return db.Nodes;
         }
 
         // GET: api/Nodes/5

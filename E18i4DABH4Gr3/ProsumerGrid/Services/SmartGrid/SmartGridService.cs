@@ -22,12 +22,12 @@ namespace ProsumerGrid.Services.SmartGrid
 
         public List<NodeDTO> GetNodeList()
         {
-            List<NodeDTO> nodes;
+            List<Node> nodes = new List<Node>();
             try
             {
                 HttpResponseMessage response = _nodeApi.GetResponse("Nodes");
                 response.EnsureSuccessStatusCode();
-                nodes = response.Content.ReadAsAsync<List<NodeDTO>>().Result;
+                nodes = response.Content.ReadAsAsync<List<Node>>().Result;
 
             }
             catch (Exception)
@@ -35,7 +35,27 @@ namespace ProsumerGrid.Services.SmartGrid
                 throw;
             }
 
-            return nodes;
+            var nodedtos = new List<NodeDTO>();
+            var grid = GetGrid();
+            nodes.ForEach(n => nodedtos.Add(NodeToDTO(n, grid)));
+
+            return nodedtos;
+        }
+
+        private NodeDTO NodeToDTO(Node n, Grid g)
+        {
+            var result = new NodeDTO
+            {
+                Id = n.Id,
+                ProsumerInfoId = n.ProsumerInfoId,
+                Balance = n.Balance,
+                GridName = g.Name,
+                GridBalance = g.Balance,
+                GridBlockExchangeValue = g.BlockExchangeValue,
+                Consumption = n.Consumption,
+                Production = n.Production
+            };
+            return result;
         }
 
         public bool UpdateTerm()
@@ -100,7 +120,7 @@ namespace ProsumerGrid.Services.SmartGrid
             return devices.Where(d => d.NodeId == id).ToList();
         }
 
-        private void IncrementTerm()
+        public Grid GetGrid()
         {
             Grid grid;
             try
@@ -113,6 +133,13 @@ namespace ProsumerGrid.Services.SmartGrid
             {
                 throw;
             }
+
+            return grid;
+        }
+        private void IncrementTerm()
+        {
+
+            var grid = GetGrid();
 
             grid.Term++;
 
