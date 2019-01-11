@@ -46,7 +46,7 @@ namespace ProsumerGrid.Controllers.ProsumerApi
                 return BadRequest(ModelState);
             }
 
-            if (id != member.MemberId)
+            if (id != member.Id)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace ProsumerGrid.Controllers.ProsumerApi
             db.Members.Add(member);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = member.MemberId }, member);
+            return CreatedAtRoute("DefaultApi", new { id = member.Id }, member);
         }
 
         // DELETE: api/Members/5
@@ -114,7 +114,7 @@ namespace ProsumerGrid.Controllers.ProsumerApi
 
         private bool MemberExists(int id)
         {
-            return db.Members.Count(e => e.MemberId == id) > 0;
+            return db.Members.Count(e => e.Id == id) > 0;
         }
     }
 }

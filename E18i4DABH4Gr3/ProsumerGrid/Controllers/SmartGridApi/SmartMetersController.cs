@@ -46,7 +46,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
                 return BadRequest(ModelState);
             }
 
-            if (id != smartMeter.SmartMeterId)
+            if (id != smartMeter.Id)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
             db.SmartMeters.Add(smartMeter);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = smartMeter.SmartMeterId }, smartMeter);
+            return CreatedAtRoute("DefaultApi", new { id = smartMeter.Id }, smartMeter);
         }
 
         // DELETE: api/SmartMeters/5
@@ -114,7 +114,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
 
         private bool SmartMeterExists(int id)
         {
-            return db.SmartMeters.Count(e => e.SmartMeterId == id) > 0;
+            return db.SmartMeters.Count(e => e.Id == id) > 0;
         }
     }
 }

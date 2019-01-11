@@ -24,9 +24,9 @@ namespace ProsumerGrid.Controllers.SmartGridApi
             var nodes = from n in db.Nodes
                 select new NodeDTO()
                 {
-                    NodeId = n.NodeId,
-                    ProsumerId = n.ProsumerId,
-                    NodeBalance = n.Balance,
+                    Id = n.Id,
+                    ProsumerInfoId = n.ProsumerInfoId,
+                    Balance = n.Balance,
                     GridName = n.Grid.Name,
                     GridBalance = n.Grid.Balance,
                     GridBlockExchangeValue = n.Grid.BlockExchangeValue,
@@ -41,13 +41,13 @@ namespace ProsumerGrid.Controllers.SmartGridApi
             var node = await db.Nodes.Include(n => n.Grid).Select(n =>
                 new NodeDTO()
                 {
-                    NodeId = n.NodeId,
-                    ProsumerId = n.ProsumerId,
-                    NodeBalance = n.Balance,
+                    Id = n.Id,
+                    ProsumerInfoId = n.ProsumerInfoId,
+                    Balance = n.Balance,
                     GridName = n.Grid.Name,
                     GridBalance = n.Grid.Balance,
                     GridBlockExchangeValue = n.Grid.BlockExchangeValue,
-                }).SingleOrDefaultAsync(n => n.NodeId == id);
+                }).SingleOrDefaultAsync(n => n.Id == id);
 
             if (node == null)
             {
@@ -66,7 +66,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
                 return BadRequest(ModelState);
             }
 
-            if (id != node.NodeId)
+            if (id != node.Id)
             {
                 return BadRequest();
             }
@@ -104,7 +104,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
             db.Nodes.Add(node);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = node.NodeId }, node);
+            return CreatedAtRoute("DefaultApi", new { id = node.Id }, node);
         }
 
         // DELETE: api/Nodes/5
@@ -134,7 +134,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
 
         private bool NodeExists(int id)
         {
-            return db.Nodes.Count(e => e.NodeId == id) > 0;
+            return db.Nodes.Count(e => e.Id == id) > 0;
         }
     }
 }

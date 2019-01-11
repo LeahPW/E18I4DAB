@@ -21,7 +21,7 @@ namespace ProsumerGrid.Controllers
         // GET: ApiTest
         public ActionResult ApiTest()
         {
-            IEnumerable<ProsumerDTO> prosumers = null;
+            IEnumerable<ProsumerInfoDTO> prosumers = null;
 
             using (var client = new HttpClient())
             {
@@ -33,14 +33,14 @@ namespace ProsumerGrid.Controllers
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    var readTask = result.Content.ReadAsAsync<IList<ProsumerDTO>>();
+                    var readTask = result.Content.ReadAsAsync<IList<ProsumerInfoDTO>>();
                     readTask.Wait();
 
                     prosumers = readTask.Result;
                 }
                 else 
                 {
-                    prosumers = Enumerable.Empty<ProsumerDTO>();
+                    prosumers = Enumerable.Empty<ProsumerInfoDTO>();
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
             }

@@ -7,12 +7,14 @@ namespace ProsumerGrid.Models.SmartGrid
 {
     public class NodeDTO
     {
-        public int NodeId { get; set; }
-        public double NodeBalance { get; set; }
+        public int Id { get; set; }
 
-        public int ProsumerId { get; set; }
-        //public string ProsumerType { get; set; }
-        //public string ProsumerAddress { get; set; }
+        public double Production { get; set; }
+        public double Consumption { get; set; }
+        public double Balance { get; set; }
+
+        public int ProsumerInfoId { get; set; }
+
 
         public string GridName { get; set; }
         public double GridBalance { get; set; }

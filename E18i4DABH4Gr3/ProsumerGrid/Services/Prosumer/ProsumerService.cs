@@ -9,21 +9,21 @@ namespace ProsumerGrid.Services.Prosumer
 {
     public class ProsumerService
     {
-        private ApiClient<Models.Prosumer.Prosumer, ProsumerDTO> _prosumerApi;
+        private ApiClient<Models.Prosumer.ProsumerInfo, ProsumerInfoDTO> _prosumerApi;
 
         public ProsumerService()
         {
-            _prosumerApi = new ApiClient<Models.Prosumer.Prosumer, ProsumerDTO>();
+            _prosumerApi = new ApiClient<Models.Prosumer.ProsumerInfo, ProsumerInfoDTO>();
         }
 
-        public List<ProsumerDTO> GetAllProsumers()
+        public List<ProsumerInfoDTO> GetAllProsumers()
         {
-            List<ProsumerDTO> prosumers;
+            List<ProsumerInfoDTO> prosumers;
             try
             {
                 HttpResponseMessage response = _prosumerApi.GetResponse("prosumers");
                 response.EnsureSuccessStatusCode();
-                prosumers = response.Content.ReadAsAsync<List<ProsumerDTO>>().Result;
+                prosumers = response.Content.ReadAsAsync<List<ProsumerInfoDTO>>().Result;
 
             }
             catch (Exception)

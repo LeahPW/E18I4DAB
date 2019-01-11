@@ -46,7 +46,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
                 return BadRequest(ModelState);
             }
 
-            if (id != grid.GridId)
+            if (id != grid.Id)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
             db.Grid.Add(grid);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = grid.GridId }, grid);
+            return CreatedAtRoute("DefaultApi", new { id = grid.Id }, grid);
         }
 
         // DELETE: api/Grid/5
@@ -114,7 +114,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
 
         private bool GridExists(int id)
         {
-            return db.Grid.Count(e => e.GridId == id) > 0;
+            return db.Grid.Count(e => e.Id == id) > 0;
         }
     }
 }

@@ -19,16 +19,14 @@ namespace ProsumerGrid.Controllers.ProsumerApi
         private ProsumerGridContext db = new ProsumerGridContext();
 
         // GET: api/Prosumers
-        public IQueryable<ProsumerDTO> GetProsumers()
+        public IQueryable<ProsumerInfoDTO> GetProsumers()
         {
             var prosumers = from b in db.Prosumers
-                select new ProsumerDTO()
+                select new ProsumerInfoDTO()
                 {
-                    ProsumerId = b.ProsumerId,
+                    Id = b.Id,
                     Address = b.Address,
-                    SmartMeterIp = b.SmartMeter.IpAddress,
-                    SmartMeterName = b.SmartMeter.Name,
-                    SmartMeterBalance = b.SmartMeter.Balance
+                    Type = b.Type
                 };
             return prosumers;
 
@@ -38,18 +36,16 @@ namespace ProsumerGrid.Controllers.ProsumerApi
 
       
         // GET: api/Prosumers/5
-        [ResponseType(typeof(Prosumer))]
+        [ResponseType(typeof(ProsumerInfo))]
         public async Task<IHttpActionResult> GetProsumer(int id)
         {
-            var prosumer = await db.Prosumers.Include(b => b.SmartMeter).Select(b =>
-                new ProsumerDTO()
+            var prosumer = await db.Prosumers.Select(b =>
+                new ProsumerInfoDTO()
                 {
-                    ProsumerId = b.ProsumerId,
+                    Id = b.Id,
                     Address = b.Address,
-                    SmartMeterIp = b.SmartMeter.IpAddress,
-                    SmartMeterName = b.SmartMeter.Name,
-                    SmartMeterBalance = b.SmartMeter.Balance
-                }).SingleOrDefaultAsync(b => b.ProsumerId == id);
+                    Type = b.Type
+                }).SingleOrDefaultAsync(b => b.Id == id);
 
             if (prosumer == null)
             {
@@ -71,14 +67,14 @@ namespace ProsumerGrid.Controllers.ProsumerApi
 
         // PUT: api/Prosumers/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutProsumer(int id, Prosumer prosumer)
+        public async Task<IHttpActionResult> PutProsumer(int id, ProsumerInfo prosumer)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != prosumer.ProsumerId)
+            if (id != prosumer.Id)
             {
                 return BadRequest();
             }
@@ -105,8 +101,8 @@ namespace ProsumerGrid.Controllers.ProsumerApi
         }
 
         // POST: api/Prosumers
-        [ResponseType(typeof(Prosumer))]
-        public async Task<IHttpActionResult> PostProsumer(Prosumer prosumer)
+        [ResponseType(typeof(ProsumerInfo))]
+        public async Task<IHttpActionResult> PostProsumer(ProsumerInfo prosumer)
         {
             if (!ModelState.IsValid)
             {
@@ -116,14 +112,14 @@ namespace ProsumerGrid.Controllers.ProsumerApi
             db.Prosumers.Add(prosumer);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = prosumer.ProsumerId }, prosumer);
+            return CreatedAtRoute("DefaultApi", new { id = prosumer.Id }, prosumer);
         }
 
         // DELETE: api/Prosumers/5
-        [ResponseType(typeof(Prosumer))]
+        [ResponseType(typeof(ProsumerInfo))]
         public async Task<IHttpActionResult> DeleteProsumer(int id)
         {
-            Prosumer prosumer = await db.Prosumers.FindAsync(id);
+            ProsumerInfo prosumer = await db.Prosumers.FindAsync(id);
             if (prosumer == null)
             {
                 return NotFound();
@@ -146,7 +142,7 @@ namespace ProsumerGrid.Controllers.ProsumerApi
 
         private bool ProsumerExists(int id)
         {
-            return db.Prosumers.Count(e => e.ProsumerId == id) > 0;
+            return db.Prosumers.Count(e => e.Id == id) > 0;
         }
     }
 }
