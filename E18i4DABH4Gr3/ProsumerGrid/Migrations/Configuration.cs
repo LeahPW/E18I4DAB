@@ -38,8 +38,8 @@ namespace ProsumerGrid.Migrations
             //    new Affiliation { MemberId = 1, ProsumerId = 2 });
 
             context.Grid.AddOrUpdate(
-                g => g.GridId, 
-                new Grid{ GridId = 1, Balance = 0, BlockExchangeValue = 1, Name = "Village Smart Grid" });
+                g => g.Id, 
+                new Grid{ Id = 1, Term = 1, Balance = 0, BlockExchangeValue = 1, Name = "Village Smart Grid" });
 
             //  This method will be called after migrating to the latest version.
 

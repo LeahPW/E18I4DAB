@@ -24,11 +24,9 @@ namespace ProsumerGrid.Controllers.SmartGridApi
             var conitems = from b in db.ConsumptionDevices
                 select new ConsumptionDeviceDTO()
                 {
-                    ConDeviceId = b.ConDeviceId,
+                    Id = b.Id,
                     Name = b.Name,
-                    Consumption = b.Consumption,
-                    ProsumerAddress = b.Prosumer.Address,
-                    ProsumerType = b.Prosumer.Type
+                    Consumption = b.Consumption
                 };
             return conitems;
 
@@ -40,15 +38,13 @@ namespace ProsumerGrid.Controllers.SmartGridApi
         [ResponseType(typeof(ConsumptionDevice))]
         public async Task<IHttpActionResult> GetConsumptionItem(int id)
         {
-            var conitem = await db.ConsumptionDevices.Include(b => b.Prosumer).Select(b =>
+            var conitem = await db.ConsumptionDevices.Select(b =>
                 new ConsumptionDeviceDTO()
                 {
-                    ConDeviceId = b.ConDeviceId,
+                    Id = b.Id,
                     Name = b.Name,
-                    Consumption = b.Consumption,
-                    ProsumerAddress = b.Prosumer.Address,
-                    ProsumerType = b.Prosumer.Type
-                }).SingleOrDefaultAsync(b => b.ConDeviceId == id);
+                    Consumption = b.Consumption
+                }).SingleOrDefaultAsync(b => b.Id == id);
 
             if (conitem == null)
             {
@@ -75,7 +71,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
                 return BadRequest(ModelState);
             }
 
-            if (id != consumptionDevice.ConDeviceId)
+            if (id != consumptionDevice.Id)
             {
                 return BadRequest();
             }
@@ -113,7 +109,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
             db.ConsumptionDevices.Add(consumptionDevice);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = consumptionDevice.ConDeviceId }, consumptionDevice);
+            return CreatedAtRoute("DefaultApi", new { id = consumptionDevice.Id }, consumptionDevice);
         }
 
         // DELETE: api/ConsumptionDevices/5
@@ -143,7 +139,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
 
         private bool ConsumptionItemExists(int id)
         {
-            return db.ConsumptionDevices.Count(e => e.ConDeviceId == id) > 0;
+            return db.ConsumptionDevices.Count(e => e.Id == id) > 0;
         }
     }
 }

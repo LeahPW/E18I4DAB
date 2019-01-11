@@ -25,11 +25,9 @@ namespace ProsumerGrid.Controllers.SmartGridApi
             var proitems = from b in db.ProductionDevices
                 select new ProductionDeviceDTO()
                 {
-                    ProDeviceId = b.ProDeviceId,
+                    Id = b.Id,
                     Name = b.Name,
-                    Production = b.Production,
-                    ProsumerAddress = b.Prosumer.Address,
-                    ProsumerType = b.Prosumer.Type
+                    Production = b.Production
                 };
             return proitems;
 
@@ -41,15 +39,13 @@ namespace ProsumerGrid.Controllers.SmartGridApi
         [ResponseType(typeof(ProductionDevice))]
         public async Task<IHttpActionResult> GetProductionItem(int id)
         {
-            var proitem = await db.ProductionDevices.Include(b => b.Prosumer).Select(b =>
+            var proitem = await db.ProductionDevices.Select(b =>
                 new ProductionDeviceDTO()
                 {
-                    ProDeviceId = b.ProDeviceId,
+                    Id = b.Id,
                     Name = b.Name,
-                    Production = b.Production,
-                    ProsumerAddress = b.Prosumer.Address,
-                    ProsumerType = b.Prosumer.Type
-                }).SingleOrDefaultAsync(b => b.ProDeviceId == id);
+                    Production = b.Production
+                }).SingleOrDefaultAsync(b => b.Id == id);
 
             if (proitem == null)
             {
@@ -77,7 +73,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
                 return BadRequest(ModelState);
             }
 
-            if (id != productionDevice.ProDeviceId)
+            if (id != productionDevice.Id)
             {
                 return BadRequest();
             }
@@ -115,7 +111,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
             db.ProductionDevices.Add(productionDevice);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = productionDevice.ProDeviceId }, productionDevice);
+            return CreatedAtRoute("DefaultApi", new { id = productionDevice.Id }, productionDevice);
         }
 
         // DELETE: api/ProductionDevices/5
@@ -145,7 +141,7 @@ namespace ProsumerGrid.Controllers.SmartGridApi
 
         private bool ProductionItemExists(int id)
         {
-            return db.ProductionDevices.Count(e => e.ProDeviceId == id) > 0;
+            return db.ProductionDevices.Count(e => e.Id == id) > 0;
         }
     }
 }

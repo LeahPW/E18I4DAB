@@ -9,15 +9,15 @@ namespace ProsumerGrid.Models.SmartGrid
     public class ProductionDevice
     {
         [Key]
-        public int ProDeviceId { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
         public double Production { get; set; }
-        //Foreign key
+
+        //Node
         [Required]
-        public int ProsumerId { get; set; }
-        //Navigation property
-        public Prosumer.Prosumer Prosumer { get; set; }
+        public int NodeId { get; set; }
+        public Node Node { get; set; }
     }
 }

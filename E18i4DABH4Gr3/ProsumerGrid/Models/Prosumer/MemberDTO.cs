@@ -5,11 +5,9 @@ using System.Web;
 
 namespace ProsumerGrid.Models.Prosumer
 {
-    public class AffiliationDTO
+    public class MemberDTO
     {
         public int Id { get; set; }
-        public string MemberName { get; set; }
-        public string ProsumerAddress { get; set; }
-
+        public string Name { get; set; }
     }
 }

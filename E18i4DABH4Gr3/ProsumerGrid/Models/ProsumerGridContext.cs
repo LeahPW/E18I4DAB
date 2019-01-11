@@ -23,7 +23,7 @@ namespace ProsumerGrid.Models
         //Prosumer Info Db
 
 
-        public System.Data.Entity.DbSet<ProsumerGrid.Models.Prosumer.Prosumer> Prosumers { get; set; }
+        public System.Data.Entity.DbSet<ProsumerGrid.Models.Prosumer.ProsumerInfo> Prosumers { get; set; }
 
         public System.Data.Entity.DbSet<ProsumerGrid.Models.Prosumer.Member> Members { get; set; }
 

@@ -9,16 +9,16 @@ namespace ProsumerGrid.Models.Prosumer
     public class Affiliation
     {
         [Key]
-        public int AffiliationId { get; set; }
-        //Foreign key
+        public int Id { get; set; }
+
+        //Member
         [Required]
         public int MemberId { get; set; }
-        //Navigation property
         public Member Member { get; set; }
-        //Foreign key
+
+        //Prosumer
         [Required]
         public int ProsumerId { get; set; }
-        //Navigation property
-        public Prosumer Prosumer { get; set; }
+        public ProsumerInfo ProsumerInfo { get; set; }
     }
 }

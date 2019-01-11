@@ -24,10 +24,9 @@ namespace ProsumerGrid.Controllers.ProsumerApi
             var affiliations = from b in db.Affiliations
              select new AffiliationDTO()
              {
-               AffiliationId = b.AffiliationId,
-               MemberName = b.Member.Name,
-               ProsumerAddress = b.Prosumer.Address,
-               SmartMeterIp = b.Prosumer.SmartMeter.IpAddress
+                    Id = b.Id,
+                    MemberName = b.Member.Name,
+                    ProsumerAddress = b.ProsumerInfo.Address
              };
             return affiliations;
             //old code
@@ -38,14 +37,13 @@ namespace ProsumerGrid.Controllers.ProsumerApi
         [ResponseType(typeof(Affiliation))]
         public async Task<IHttpActionResult> GetAffiliation(int id)
         {
-            var affiliation = await db.Affiliations.Include(b => b.Member).Include(b => b.Prosumer).Select(b =>
+            var affiliation = await db.Affiliations.Include(b => b.Member).Include(b => b.ProsumerInfo).Select(b =>
                    new AffiliationDTO()
                    {
-                       AffiliationId = b.AffiliationId,
+                       Id = b.Id,
                        MemberName = b.Member.Name,
-                       ProsumerAddress = b.Prosumer.Address,
-                       SmartMeterIp = b.Prosumer.SmartMeter.IpAddress
-                   }).SingleOrDefaultAsync(b => b.AffiliationId == id);
+                       ProsumerAddress = b.ProsumerInfo.Address
+                   }).SingleOrDefaultAsync(b => b.Id == id);
 
             if (affiliation == null)
             {
@@ -74,7 +72,7 @@ namespace ProsumerGrid.Controllers.ProsumerApi
                 return BadRequest(ModelState);
             }
 
-            if (id != affiliation.AffiliationId)
+            if (id != affiliation.Id)
             {
                 return BadRequest();
             }
@@ -112,7 +110,7 @@ namespace ProsumerGrid.Controllers.ProsumerApi
             db.Affiliations.Add(affiliation);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = affiliation.AffiliationId }, affiliation);
+            return CreatedAtRoute("DefaultApi", new { id = affiliation.Id }, affiliation);
         }
 
         // DELETE: api/Affiliations/5
@@ -142,7 +140,7 @@ namespace ProsumerGrid.Controllers.ProsumerApi
 
         private bool AffiliationExists(int id)
         {
-            return db.Affiliations.Count(e => e.AffiliationId == id) > 0;
+            return db.Affiliations.Count(e => e.Id == id) > 0;
         }
     }
 }

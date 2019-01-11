@@ -7,19 +7,14 @@ using ProsumerGrid.Models.SmartGrid;
 
 namespace ProsumerGrid.Models.Prosumer
 {
-    public class Prosumer
+    public class ProsumerInfo
     {
         [Key]
-        public int ProsumerId { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Type { get; set; }
         [Required]
         public string Address { get; set; }
-        //Foreign key
-        [Required]
-        public int SmartMeterId { get; set; }
-        //Navigation property
-        public SmartMeter SmartMeter { get; set; }
 
         //public virtual ICollection<Member> Members { get; set; }
         //public ICollection<ConsumptionDevice> ConItems { get; set; }

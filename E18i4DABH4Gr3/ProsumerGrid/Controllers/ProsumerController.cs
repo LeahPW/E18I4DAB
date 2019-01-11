@@ -54,7 +54,7 @@ namespace ProsumerGrid.Controllers
             //    }
             //}
 
-            List<ProsumerDTO> prosumers = _prosumerService.GetAllProsumers();
+            List<ProsumerInfoDTO> prosumers = _prosumerService.GetAllProsumers();
             return View(prosumers);
         }
 
@@ -65,7 +65,7 @@ namespace ProsumerGrid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Prosumer prosumer = await db.Prosumers.FindAsync(id);
+            ProsumerInfo prosumer = await db.Prosumers.FindAsync(id);
             if (prosumer == null)
             {
                 return HttpNotFound();
@@ -85,7 +85,7 @@ namespace ProsumerGrid.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ProsumerId,Type,Address,SmartMeterId")] Prosumer prosumer)
+        public async Task<ActionResult> Create([Bind(Include = "ProsumerId,Type,Address,SmartMeterId")] ProsumerInfo prosumer)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace ProsumerGrid.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SmartMeterId = new SelectList(db.SmartMeters, "SmartMeterId", "IpAddress", prosumer.SmartMeterId);
+            ViewBag.SmartMeterId = new SelectList(db.SmartMeters, "SmartMeterId", "IpAddress", prosumer.Id);
             return View(prosumer);
         }
 
@@ -105,12 +105,12 @@ namespace ProsumerGrid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Prosumer prosumer = await db.Prosumers.FindAsync(id);
+            ProsumerInfo prosumer = await db.Prosumers.FindAsync(id);
             if (prosumer == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SmartMeterId = new SelectList(db.SmartMeters, "SmartMeterId", "IpAddress", prosumer.SmartMeterId);
+            ViewBag.SmartMeterId = new SelectList(db.SmartMeters, "SmartMeterId", "IpAddress", prosumer.Id);
             return View(prosumer);
         }
 
@@ -119,7 +119,7 @@ namespace ProsumerGrid.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ProsumerId,Type,Address,SmartMeterId")] Prosumer prosumer)
+        public async Task<ActionResult> Edit([Bind(Include = "ProsumerId,Type,Address,SmartMeterId")] ProsumerInfo prosumer)
         {
             if (ModelState.IsValid)
             {
@@ -127,7 +127,7 @@ namespace ProsumerGrid.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.SmartMeterId = new SelectList(db.SmartMeters, "SmartMeterId", "IpAddress", prosumer.SmartMeterId);
+            ViewBag.SmartMeterId = new SelectList(db.SmartMeters, "SmartMeterId", "IpAddress", prosumer.Id);
             return View(prosumer);
         }
 
@@ -138,7 +138,7 @@ namespace ProsumerGrid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Prosumer prosumer = await db.Prosumers.FindAsync(id);
+            ProsumerInfo prosumer = await db.Prosumers.FindAsync(id);
             if (prosumer == null)
             {
                 return HttpNotFound();
@@ -151,7 +151,7 @@ namespace ProsumerGrid.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Prosumer prosumer = await db.Prosumers.FindAsync(id);
+            ProsumerInfo prosumer = await db.Prosumers.FindAsync(id);
             db.Prosumers.Remove(prosumer);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
