@@ -245,6 +245,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ProsumerApi\AffiliationsController.cs" />
+    <Compile Include="Controllers\ProsumerInfoesController.cs" />
     <Compile Include="Controllers\SmartGridApi\ConsumptionItemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProsumerApi\MembersController.cs" />
@@ -266,6 +267,7 @@
     <Compile Include="Models\SmartGrid\ConsumptionDevice.cs" />
     <Compile Include="Models\SmartGrid\ConsumptionDeviceDTO.cs" />
     <Compile Include="Models\SmartGrid\GridDTO.cs" />
+    <Compile Include="Models\SmartGrid\SmartGridViewModel.cs" />
     <Compile Include="Models\SmartGrid\SmartMeterDTO.cs" />
     <Compile Include="Models\Trade\Trade.cs" />
     <Compile Include="Models\Prosumer\Member.cs" />
@@ -354,6 +356,13 @@
     <Content Include="Views\SmartGrid\Edit.cshtml" />
     <Content Include="Views\SmartGrid\Index.cshtml" />
     <Content Include="Views\Trades\Overview.cshtml" />
+    <Content Include="Views\SmartGrid\Overview.cshtml" />
+    <Content Include="Views\ProsumerInfoes\Create.cshtml" />
+    <Content Include="Views\ProsumerInfoes\Delete.cshtml" />
+    <Content Include="Views\ProsumerInfoes\Details.cshtml" />
+    <Content Include="Views\ProsumerInfoes\Edit.cshtml" />
+    <Content Include="Views\ProsumerInfoes\Index.cshtml" />
+    <Content Include="Views\SmartGrid\GridDetailsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

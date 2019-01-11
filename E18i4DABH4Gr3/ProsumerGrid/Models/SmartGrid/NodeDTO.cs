@@ -15,7 +15,7 @@ namespace ProsumerGrid.Models.SmartGrid
 
         public int ProsumerInfoId { get; set; }
 
-
+        
         public string GridName { get; set; }
         public double GridBalance { get; set; }
         public double GridBlockExchangeValue { get; set; }

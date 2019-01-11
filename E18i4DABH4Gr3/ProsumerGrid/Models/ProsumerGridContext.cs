@@ -41,5 +41,9 @@ namespace ProsumerGrid.Models
         public System.Data.Entity.DbSet<E18i4DABH4Gr3.Models.Trade> Trades { get; set; }
 
         public System.Data.Entity.DbSet<ProsumerGrid.Models.Trade.TradeDTO> TradeDTOes { get; set; }
+
+        public System.Data.Entity.DbSet<ProsumerGrid.Models.SmartGrid.NodeDTO> NodeDTOes { get; set; }
+
+        public System.Data.Entity.DbSet<ProsumerGrid.Models.SmartGrid.GridDTO> GridDTOes { get; set; }
     }
 }

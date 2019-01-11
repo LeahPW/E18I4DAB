@@ -30,6 +30,8 @@ namespace ProsumerGrid.Controllers.SmartGridApi
                     GridName = n.Grid.Name,
                     GridBalance = n.Grid.Balance,
                     GridBlockExchangeValue = n.Grid.BlockExchangeValue,
+                    Consumption = n.Consumption,
+                    Production = n.Production
                 };
             return nodes;
         }

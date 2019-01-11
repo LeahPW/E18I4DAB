@@ -1,0 +1,71 @@
+﻿
+@model ProsumerGrid.Models.SmartGrid.SmartGridViewModel
+
+@{
+    ViewBag.Title = "Overview";
+}
+@Html.Partial("GridDetailsPartial", Model.Grid )
+
+<h2>Grid Nodes:</h2>
+
+<p>
+    @Html.ActionLink("Change Term", "UpdateTerm")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nodes[0].Production)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nodes[0].Consumption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nodes[0].Balance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nodes[0].ProsumerInfoId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nodes[0].GridName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nodes[0].GridBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nodes[0].GridBlockExchangeValue)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Nodes)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Production)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Consumption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @Html.ActionLink("Find Prosumer", "Edit", "Prosumer", new { id = item.Id }, new {})
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GridName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GridBalance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GridBlockExchangeValue)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new {id = item.Id})
+            </td>
+        </tr>
+    }
+
+</table>
