@@ -10,9 +10,14 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using HttpGetAttribute = System.Web.Http.HttpGetAttribute;
+using RouteAttribute = System.Web.Http.RouteAttribute;
 
 namespace ProsumerGrid.Controllers.TradeApi
 {
+    //[Produces("application/json")]
+    //[Route("api/Trade")]
+    //[ApiController]
     public class TradeController : ApiController
     {
         // cosmos connection layer
@@ -37,9 +42,18 @@ namespace ProsumerGrid.Controllers.TradeApi
             return await _repository.Read(id);
         }
 
-        public IEnumerable<Trade> Get()
+        [Route("api/Trade/all")]
+        [HttpGet]
+        public IEnumerable<Trade> GetAll()
         {
             return _repository.Query().ToList();
+        }
+
+        [Route("api/Trade/archived")]
+        [HttpGet]
+        public IEnumerable<Trade> GetAllArchived()
+        {
+            return _repository.Query().Where(t => (TradeStatus)t.Status == TradeStatus.Archived).ToList(); //casting due no time to refactoring
         }
 
         public async Task<bool> Post(Trade trade) //would be nicer to return http status or a string about the success to connect to the database
@@ -56,5 +70,10 @@ namespace ProsumerGrid.Controllers.TradeApi
         {
             await _repository.Delete(id);
         }
+    }
+
+    public enum TradeStatus // should replace the int
+    {
+        Archived = 2
     }
 }
