@@ -1,0 +1,42 @@
+﻿@model ProsumerGrid.Models.SmartGrid.Node
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Node</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Grid.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grid.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prosumer.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prosumer.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Balance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Balance)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NodeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

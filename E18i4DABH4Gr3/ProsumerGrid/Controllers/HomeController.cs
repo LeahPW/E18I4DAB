@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using ProsumerGrid.Models;
+using ProsumerGrid.Models.Prosumer;
 
 namespace ProsumerGrid.Controllers
 {
