@@ -232,14 +232,19 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AffiliationsController.cs" />
-    <Compile Include="Controllers\ConsumptionItemsController.cs" />
+    <Compile Include="Controllers\ProsumerApi\AffiliationsController.cs" />
+    <Compile Include="Controllers\SmartGridApi\ConsumptionItemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MembersController.cs" />
-    <Compile Include="Controllers\ProductionItemsController.cs" />
-    <Compile Include="Controllers\ProsumersController.cs" />
-    <Compile Include="Controllers\SmartMetersController.cs" />
-    <Compile Include="Controllers\Document\TradeController.cs" />
+    <Compile Include="Controllers\ProsumerApi\MembersController.cs" />
+    <Compile Include="Controllers\SmartGridApi\ProductionItemsController.cs" />
+    <Compile Include="Controllers\ProsumerApi\ProsumersController.cs" />
+    <Compile Include="Controllers\SmartGridApi\SmartMetersController.cs" />
+    <Compile Include="Controllers\TradeApi\TradeController.cs" />
+    <Compile Include="Controllers\ProsumerController.cs" />
+    <Compile Include="Controllers\SmartGridApi\GridController.cs" />
+    <Compile Include="Controllers\SmartGridApi\NodesController.cs" />
+    <Compile Include="Controllers\SmartGridController.cs" />
+    <Compile Include="Controllers\TradesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -255,24 +260,37 @@
     <Compile Include="Migrations\201812111351039_BackToInitial1.Designer.cs">
       <DependentUpon>201812111351039_BackToInitial1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901110950584_WithGridInfo.cs" />
+    <Compile Include="Migrations\201901110950584_WithGridInfo.Designer.cs">
+      <DependentUpon>201901110950584_WithGridInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901111014301_WithGridInfo1.cs" />
+    <Compile Include="Migrations\201901111014301_WithGridInfo1.Designer.cs">
+      <DependentUpon>201901111014301_WithGridInfo1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Affiliation.cs" />
-    <Compile Include="Models\AffiliationDTO.cs" />
-    <Compile Include="Models\SmartMeterDTO.cs" />
-    <Compile Include="Models\ConsumptionItem.cs" />
-    <Compile Include="Models\ConsumptionItemDTO.cs" />
-    <Compile Include="Models\Document\Trade.cs" />
-    <Compile Include="Models\Member.cs" />
-    <Compile Include="Models\ProductionItem.cs" />
-    <Compile Include="Models\ProductionItemDTO.cs" />
-    <Compile Include="Models\Prosumer.cs" />
-    <Compile Include="Models\ProsumerDTO.cs" />
+    <Compile Include="Models\Prosumer\Affiliation.cs" />
+    <Compile Include="Models\Prosumer\AffiliationDTO.cs" />
+    <Compile Include="Models\SmartGrid\ConsumptionDevice.cs" />
+    <Compile Include="Models\SmartGrid\ConsumptionDeviceDTO.cs" />
+    <Compile Include="Models\Trade\Trade.cs" />
+    <Compile Include="Models\Prosumer\Member.cs" />
+    <Compile Include="Models\SmartGrid\ProductionDevice.cs" />
+    <Compile Include="Models\SmartGrid\ProductionDeviceDTO.cs" />
+    <Compile Include="Models\Prosumer\Prosumer.cs" />
+    <Compile Include="Models\Prosumer\ProsumerDTO.cs" />
     <Compile Include="Models\ProsumerGridContext.cs" />
-    <Compile Include="Models\SmartMeter.cs" />
+    <Compile Include="Models\SmartGrid\SmartMeter.cs" />
+    <Compile Include="Models\SmartGrid\Grid.cs" />
+    <Compile Include="Models\SmartGrid\Node.cs" />
+    <Compile Include="Models\SmartGrid\NodeDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\TradeRepository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Services\ApiClient.cs" />
+    <Compile Include="Services\Prosumer\ProsumerService.cs" />
+    <Compile Include="Services\SmartGrid\SmartGridService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -329,9 +347,25 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\ApiTest.cshtml" />
+    <Content Include="Views\Prosumer\Create.cshtml" />
+    <Content Include="Views\Prosumer\Delete.cshtml" />
+    <Content Include="Views\Prosumer\Details.cshtml" />
+    <Content Include="Views\Prosumer\Edit.cshtml" />
+    <Content Include="Views\Prosumer\Index.cshtml" />
+    <Content Include="Views\SmartGrid\Create.cshtml" />
+    <Content Include="Views\SmartGrid\Delete.cshtml" />
+    <Content Include="Views\SmartGrid\Details.cshtml" />
+    <Content Include="Views\SmartGrid\Edit.cshtml" />
+    <Content Include="Views\SmartGrid\Index.cshtml" />
+    <Content Include="Views\Trades\Create.cshtml" />
+    <Content Include="Views\Trades\Delete.cshtml" />
+    <Content Include="Views\Trades\Details.cshtml" />
+    <Content Include="Views\Trades\Edit.cshtml" />
+    <Content Include="Views\Trades\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Services\Trade\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -371,6 +405,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812111351039_BackToInitial1.resx">
       <DependentUpon>201812111351039_BackToInitial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901110950584_WithGridInfo.resx">
+      <DependentUpon>201901110950584_WithGridInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901111014301_WithGridInfo1.resx">
+      <DependentUpon>201901111014301_WithGridInfo1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

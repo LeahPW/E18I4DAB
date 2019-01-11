@@ -54,7 +54,7 @@ namespace ProsumerGrid.Migrations
                 .PrimaryKey(t => t.SmartMeterId);
             
             CreateTable(
-                "dbo.ConsumptionItems",
+                "dbo.ConsumptionDevices",
                 c => new
                     {
                         ConItemId = c.Int(nullable: false, identity: true),
@@ -67,7 +67,7 @@ namespace ProsumerGrid.Migrations
                 .Index(t => t.ProsumerId);
             
             CreateTable(
-                "dbo.ProductionItems",
+                "dbo.ProductionDevices",
                 c => new
                     {
                         ProItemId = c.Int(nullable: false, identity: true),
@@ -83,18 +83,18 @@ namespace ProsumerGrid.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.ProductionItems", "ProsumerId", "dbo.Prosumers");
-            DropForeignKey("dbo.ConsumptionItems", "ProsumerId", "dbo.Prosumers");
+            DropForeignKey("dbo.ProductionDevices", "ProsumerId", "dbo.Prosumers");
+            DropForeignKey("dbo.ConsumptionDevices", "ProsumerId", "dbo.Prosumers");
             //DropForeignKey("dbo.Affiliations", "ProsumerId", "dbo.Prosumers");
             DropForeignKey("dbo.Prosumers", "SmartMeterId", "dbo.SmartMeters");
             //DropForeignKey("dbo.Affiliations", "MemberId", "dbo.Members");
-            DropIndex("dbo.ProductionItems", new[] { "ProsumerId" });
-            DropIndex("dbo.ConsumptionItems", new[] { "ProsumerId" });
+            DropIndex("dbo.ProductionDevices", new[] { "ProsumerId" });
+            DropIndex("dbo.ConsumptionDevices", new[] { "ProsumerId" });
             DropIndex("dbo.Prosumers", new[] { "SmartMeterId" });
             //DropIndex("dbo.Affiliations", new[] { "ProsumerId" });
             //DropIndex("dbo.Affiliations", new[] { "MemberId" });
-            DropTable("dbo.ProductionItems");
-            DropTable("dbo.ConsumptionItems");
+            DropTable("dbo.ProductionDevices");
+            DropTable("dbo.ConsumptionDevices");
             DropTable("dbo.SmartMeters");
             DropTable("dbo.Prosumers");
             DropTable("dbo.Members");

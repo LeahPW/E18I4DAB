@@ -20,16 +20,24 @@ namespace ProsumerGrid.Models
             this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
-        public System.Data.Entity.DbSet<ProsumerGrid.Models.ConsumptionItem> ConsumptionItems { get; set; }
+        //Prosumer Info Db
 
-        public System.Data.Entity.DbSet<ProsumerGrid.Models.Prosumer> Prosumers { get; set; }
 
-        public System.Data.Entity.DbSet<ProsumerGrid.Models.Member> Members { get; set; }
+        public System.Data.Entity.DbSet<ProsumerGrid.Models.Prosumer.Prosumer> Prosumers { get; set; }
 
-        public System.Data.Entity.DbSet<ProsumerGrid.Models.ProductionItem> ProductionItems { get; set; }
+        public System.Data.Entity.DbSet<ProsumerGrid.Models.Prosumer.Member> Members { get; set; }
 
-        public System.Data.Entity.DbSet<ProsumerGrid.Models.SmartMeter> SmartMeters { get; set; }
 
-        public System.Data.Entity.DbSet<ProsumerGrid.Models.Affiliation> Affiliations { get; set; }
+        public System.Data.Entity.DbSet<ProsumerGrid.Models.Prosumer.Affiliation> Affiliations { get; set; }
+
+        //Smart Grid Info Db
+        public System.Data.Entity.DbSet<ProsumerGrid.Models.SmartGrid.ProductionDevice> ProductionDevices { get; set; }
+        public System.Data.Entity.DbSet<ProsumerGrid.Models.SmartGrid.ConsumptionDevice> ConsumptionDevices { get; set; }
+        public System.Data.Entity.DbSet<ProsumerGrid.Models.SmartGrid.SmartMeter> SmartMeters { get; set; }
+        public System.Data.Entity.DbSet<ProsumerGrid.Models.SmartGrid.Grid> Grid { get; set; }
+
+        public System.Data.Entity.DbSet<ProsumerGrid.Models.SmartGrid.Node> Nodes { get; set; }
+
+        public System.Data.Entity.DbSet<E18i4DABH4Gr3.Models.Trade> Trades { get; set; }
     }
 }
