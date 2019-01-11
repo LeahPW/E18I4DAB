@@ -95,7 +95,7 @@ namespace ProsumerGrid.Services.Trade
             HttpResponseMessage response;
             try
             {
-                response = _tradeApi.Post("trades", trade);
+                response = _tradeApi.Post("Trade", trade);
                 response.EnsureSuccessStatusCode();
             }
             catch (Exception)

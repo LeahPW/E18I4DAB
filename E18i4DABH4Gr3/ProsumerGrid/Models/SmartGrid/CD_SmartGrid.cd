@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProsumerGrid.Models.SmartGrid.ConsumptionDevice">
+    <Position X="1.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAAAAAAAAAAAAAAAQAACAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\SmartGrid\ConsumptionDevice.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Node" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ProsumerGrid.Models.SmartGrid.Grid">
+    <Position X="6.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAAAAAAABAAAgBAAQAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Models\SmartGrid\Grid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProsumerGrid.Models.SmartGrid.Node">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAggAAAAAAABAIAkAABQAAAAAAAAAAAAAQAAAAAg=</HashCode>
+      <FileName>Models\SmartGrid\Node.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Grid" />
+      <Property Name="SmartMeter" />
+      <Property Name="ProsumerInfo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ProsumerGrid.Models.SmartGrid.ProductionDevice">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAABAAAAAAAQAACAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\SmartGrid\ProductionDevice.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Node" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ProsumerGrid.Models.SmartGrid.SmartMeter">
+    <Position X="4.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAACAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SmartGrid\SmartMeter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProsumerGrid.Models.Prosumer.ProsumerInfo" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Prosumer\ProsumerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
